@@ -1,27 +1,27 @@
 def main():
-    while True:
-        fraction = input("Fraction: ")
-        percentage = convert(fraction)
-        print (gauge(percentage))
+    user_input = input("Fraction: ")
+    fraction = convert(user_input)
+    print (gauge(fraction))
 
 
-def convert(fraction):
-    fraction = fraction.split('/')
+def convert(fraction_string):
+    fraction_list = fraction_string.split('/')
 
     try:
-        fuel = int(fraction[0]) / int(fraction[1])
-        #if int(fraction[0]) > int(fraction[1]) or int(fraction[0]) < 0:
-        #    continue
+        fraction = int(fraction_list[0]) / int(fraction_list[1])
     except ValueError:
-        pass
+        raise ValueError
     except ZeroDivisionError:
-        pass
+        raise ZeroDivisionError
+    else:
+        if fraction > 1:
+            raise ValueError
+        else:
+            return fraction
 
-    return fuel
 
-
-def gauge(percentage):
-    percentage = round(percentage * 100)
+def gauge(fraction):
+    percentage = round(fraction * 100)
 
     if percentage <= 1:
         return "E"
