@@ -36,7 +36,7 @@ def main():
     write_pic = ImageOps.fit(read_pic, shirt_pic.size)
 
     # Overlay shirt.png onto write_pic
-    write_pic.paste(shirt_pic, (0, 0))
+    write_pic.paste(shirt_pic, (0, 0), shirt_pic)
 
     # Save pic
     write_pic.save(write_pic_name)
