@@ -1,6 +1,6 @@
 import sys
 from os import path
-from PIL import Image
+from PIL import Image, ImageOps
 
 
 def get_format(name):
@@ -11,34 +11,36 @@ def get_format(name):
     else:
         sys.exit("Invalid input")
 
+def main():
+    # Handle command-line arguments
+    if len(sys.argv) < 3:
+        sys.exit("Too few command-line arguments")
+    elif len(sys.argv) > 3:
+        sys.exit("Too many command-line arguments")
 
-# Handle command-line arguments
-if len(sys.argv) < 3:
-    sys.exit("Too few command-line arguments")
-elif len(sys.argv) > 3:
-    sys.exit("Too many command-line arguments")
+    read_pic_name = sys.argv[1].lower()
+    write_pic_name = sys.argv[2].lower()
 
-read_pic_name = sys.argv[1].lower()
-write_pic_name = sys.argv[2].lower()
+    if not path.exists(read_pic_name):
+        sys.exit("File does not exist")
 
-if not path.exists(read_pic):
-    sys.exit("File does not exist")
-
-read_pic_format = get_format(read_pic)
-write_pic_format = get_format(write_pic)
-
-if not read_pic_format == write_pic_format: #potential to shorten!
-     sys.exit("Input and output have different extensions")
+    if get_format(read_pic_name) != get_format(write_pic_name):
+        sys.exit("Input and output have different extensions")
 
 
-# Change below
-images = []
+    # Open shirt.png and before image
+    shirt_pic = Image.open('shirt.png')
+    read_pic = Image.open(read_pic_name)
+
+    # Resize read_pic to match shirt_pic's size
+    write_pic = ImageOps.fit(read_pic, shirt_pic.size)
+
+    # Overlay shirt.png onto write_pic
+    write_pic.paste(shirt_pic, (0, 0))
+
+    # Save pic
+    write_pic.save(write_pic_name)
 
 
-for arg in sys.argv[1:]:
-	image = Image.open(arg)
-	images.append(image)
-
-images[0].save(
-	"costumes.gif", save_all=True, append_images=[images[1]], duration=200, loop=0
-)
+if __name__ == "__main__":
+    main()
