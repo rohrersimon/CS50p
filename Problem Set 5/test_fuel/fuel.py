@@ -17,18 +17,16 @@ def convert(fraction_string):
         if fraction > 1:
             raise ValueError
         else:
-            return fraction
+            return fraction * 100
 
 
 def gauge(fraction):
-    percentage = round(fraction * 100)
-
-    if percentage <= 1:
+    if fraction <= 1:
         return "E"
-    elif percentage >= 99:
+    elif fraction >= 99:
         return "F"
     else:
-        return (f"{percentage}%")
+        return (f"{fraction}%")
 
 
 if __name__ == "__main__":

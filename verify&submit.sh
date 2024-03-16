@@ -5,8 +5,9 @@
 # exercises=("emojize" "figlet" "adieu" "game" "professor" "bitcoin")
 # exercises=("bank" "fuel" "plates" "twttr")
 # exercises=("lines" "pizza" "scourgify" "shirt")
-exercises=("numb3rs" "um" "watch" "working" "response")
-ProblemSet='7'
+# exercises=("numb3rs" "um" "watch" "working" "response")
+exercises=("jar" "seasons" "shirtificate")
+ProblemSet='8'
 
 # Loop through the exercises and check each exercise
 for string in "${exercises[@]}"; do
@@ -18,3 +19,6 @@ for string in "${exercises[@]}"; do
     #read -p "Press Enter to continue... "
 
 done
+
+# generate requirements.txt
+pip freeze > requirements.txt

@@ -29,5 +29,5 @@ with open(csvname) as file:
 
         # Write CSV file
         for row in reader:
-            first, last = row["name"].split(", ")
+            last, first = row["name"].split(", ")
             writer.writerow({"first": first, "last": last, "house": row["house"]})

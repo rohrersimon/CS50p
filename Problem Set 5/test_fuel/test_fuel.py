@@ -13,18 +13,25 @@ def test_convert_zerodevision():
         convert('3/0')
 
 
+def test_convert():
+    assert convert('99/100') == 99
+    assert convert('1/100') == 1
+    assert convert('1/5') == 20
+
+
 def test_gauge_full():
-    assert gauge(0.99) == 'F'
-    assert gauge(1) == 'F'
-    assert gauge(400) == 'F'
+    assert gauge(99) == 'F'
+    assert gauge(100) == 'F'
 
 
 def test_gauge_empty():
-    assert gauge(0.01) == 'E'
+    assert gauge(1) == 'E'
     assert gauge(0) == 'E'
 
 
 def test_gauge_percent():
-    for _ in range(10):
-        number = random.randint(0, 100)
-        assert gauge((number/100)) == (f"{number}%")
+    assert gauge(2) == '2%'
+    assert gauge(98) == '98%'
+#    for _ in range(10):
+#        number = random.randint(2, 98)
+#        assert gauge((number/100)) == (f"{number}%")

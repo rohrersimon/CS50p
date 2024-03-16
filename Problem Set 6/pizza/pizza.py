@@ -22,5 +22,5 @@ with open(csvname, 'r') as file:
     reader = csv.reader(file)
     data = list(reader)
 
-# Print ACSII art
-print(tabulate(data, tablefmt="grid"))
+# Print ACSII table
+print(tabulate(data, headers="firstrow", tablefmt="grid"))
